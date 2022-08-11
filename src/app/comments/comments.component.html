@@ -1,0 +1,36 @@
+<div id="app">
+  <div class="comments-outside">
+    <div class="comments-header">
+      <div class="comments-stats">
+        <span><i class="fa fa-comment"></i> {{comments.length}} </span>
+      </div>
+      <h4>COMMENTS</h4>
+    </div>
+    <div class="comments">
+      <div class="comments-wrapper">
+        <div *ngFor="let comment of comments" class="comment">
+          <div class="text">
+            <span><b>{{comment.date}}</b> {{comment.text}} </span>
+
+          </div>
+        </div>
+
+      </div>
+      <hr />
+      <div class="reply">
+        <input
+          type="text"
+          [(ngModel)]="reply"
+          class="reply--text"
+          placeholder="Leave a comment..."
+          maxlength="500"
+          required
+          (keyup.enter)="submitComment()"
+        />
+        <button class="reply--button" (click)="submitComment()">
+          <i></i> Send
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

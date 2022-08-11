@@ -1,0 +1,28 @@
+<div class="gallery-lightbox-container">
+    <div class="gallery">
+        <div *ngFor="let data of galleryData; let i=index" class="gallery-img">
+            <img (click)="onPreviewImage(i, data.id)" [src]="data.url" [alt]="data.id">
+        </div>
+    </div>
+    <div *ngIf="showMask" class="lightbox" @animation2>
+
+        <button *ngIf="previewImage" class="close-btn" (click)="onClosePreview()">
+            <i class="far fa-times"></i>
+        </button>
+
+        <div *ngIf="previewImage"
+          [@animation]="{value: 'visible'}"
+          (@animation.done)="onAnimationEnd($event)"
+          class="lightbox-img">
+          <div class="left-part">
+            <img [src]="currentLightboxImage.url" [alt]="currentLightboxImage.id">
+          </div>
+          <div class="right-part">
+            <app-comments
+              [comments]='comments'
+              [imageId]="currentLightboxImage.id"
+              ></app-comments>
+          </div>
+      </div>
+    </div>
+</div>
